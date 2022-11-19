@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone-House!</title>
+    <!-- Custom CSS -->    
+    <link rel="stylesheet" href="style.css">
+    <!-- jQuery CDN -->
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/d027480c9c.js" crossorigin="anonymous" defer></script> 
+    <!-- Custom JS -->   
+    <script src="./shop.js" defer></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="main-header">
+        
+        <!-- Navbar --><!-- fixed-top ?-->
+        <nav class="navbar navbar-expand-lg px-4">
+            <!-- Brand Logo -->
+            <a href="#main-header" class="navbar-brand"> 
+                <img src="data:image/png;base64,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" class="img-fluid" alt="main logo"/>
+            </a>
+            <!-- Info Items in Nav -->
+            <div class="nav-main-info d-lg-flex mx-lg-5">
+                <!-- Phone Number -->
+                <div class="nav-info align-items-center d-flex justify-content-between mx-lg-5">
+                    <span class="d-none d-md-block info-icon mx-lg-3">
+                        <i class="fas fa-phone"></i>
+                    </span>
+                    <p class="d-none d-md-block mb-0"> +91 7703960518 </p>
+                </div>
+                <!-- Cart -->
+                <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5">
+                    <span class="cart-info-icon mx-2">
+                        <i class="fas fa-shopping-cart"></i>
+                    </span>
+                    <p class="d-none d-md-block text-capitalize mb-0">
+                        <span id="item-count">0</span> 
+                        items - Rs
+                        <span class="item-total">0.00</span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Hamburger Toggle Button-->
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#main-navigation">
+                <span class="navbar-toggler-icon d-flex align-items-center justify-content-center">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button> 
+                       
+            <!-- Main Navigation Links-->
+            <div class="collapse navbar-collapse" id="main-navigation">
+                <ul class="navbar-nav text-capitalize mx-auto">
+                    <li class="nav-item active">
+                        <a href="#main-header" class="nav-link">home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#about" class="nav-link">about us</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#products" class="nav-link">products</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#contact" class="nav-link">contact</a>
+                    </li>
+                </ul>
+            </div>
+           
+            
+            
+        </nav>
+        
+        <!-- Banner Section-->
+        <div class="container-fluid">
+            <div class="row banner justify-content-center align-items-center">
+                <div class="col-10 mx-auto banner-info text-center">
+                    <h1 class="text-capitalize">welcome to <strong class="banner-title">drone-house!</strong></h1>
+                    <a href="#products" class="btn banner-link text-uppercase  my-2">explore</a>
+                </div>
+
+            <!-- Open Cart -->
+            <div class="open-cart position-fixed" id="open-cart">
+        
+              <!-- single cart item 
+            <div class="cart-item d-flex justify-content-between text-capitalize my-3">
+                <img src="./imgs/display-img/rice-meal-2.jpg" alt="" class="img-fluid rounded-circle cart-img" id="item-img">
+            
+                <div class="item-text">
+                    <p id="cart-item-title">cart-item</p>
+                    <span>£</span>
+                <span id="cart-item-price" class="cart-item-price">10.99</span>
+                </div>
+                
+                <a href="#" class="cart-item-remove" id="cart-item-remove">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+            -->
+
+            <!-- Total -->
+            <div class="cart-total d-flex justify-content-around text-capitalize mt-5" >
+                <h5>total</h5>
+                <h5>Rs<strong id="cart-total" class="font-weight-bold">0.00</strong></h5>
+            </div>
+
+            <!-- Open Cart Buttons -->
+           <div class="d-flex justify-content-between mt-3 text-uppercase">
+               <a href="#" class="btn btn-black cart-item-btn">checkout</a>
+                <a href="" class="btn btn-red cart-item-btn">clear cart</a>
+            </div>
+        </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-10 mx-auto col-md-6 my-5">
+                    <h2 class="text-capitalize">about <strong class="banner-title">us</strong></h2>
+                    <p class="my-4 w-75 text-muted"> we are group of students bringing here the top notch knowledge about all the drones and thier types. we are here providing information about drone price and best website to look out for drone buying and selling.we are also providing drone making strategies along with our expert. So, if anyone is interested to make thier own drone they can contact our expert. </p>
+                    <a href="#products" class="btn btn-black text-uppercase">explore</a>
+                </div>
+                <div class="col-10 mx-auto col-md-6 my-5">
+                    <div class="about-img-container">
+                        <img src="jayant.jpeg" alt="error" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <!-- Products Section-->
+    <section id="products">
+        <div class="container">
+           
+            <!-- Section Title -->
+            <div class="row">
+                <div class="col-10 mx-auto col-xs-6 text-center">
+                    <h2 class="text-capitalize">our <strong class="banner-title">products</strong></h2>
+                </div>
+            </div>
+            
+            <!-- Sort Buttons -->
+            <div class="row">
+                <div class="col-lg-8 mx-auto d-flex justify-content-around sortBtn flex-wrap">
+                    <a href="#" class="btn btn-black text-uppercase filter-btn m-2"  data-filter="all">all</a>
+                    <a href="#" class="btn btn-black text-uppercase filter-btn m-2"  data-filter="all">main</a>
+                    
+                </div>
+            </div>
+            
+            <!-- Search Input -->
+            <div class="row">
+                <div class="col-10 mx-auto col-md-6">
+                    <form action="">
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text search-box">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                            <input type="text" id="search-item" class="form-control" placeholder="Search Drones...">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Items -->
+        <div class="container">
+            <div class="row product-items py-5" id="product-items">
+
+                <!-- single item -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 product-item food-item" data-item="food-item">
+                    <div class="card single-item">
+                        <div class="img-container">
+                            <img src="./imgs/display-img/drone-2.jpg" alt="Rice Meal 1" class="card-img-top product-img">
+                            <span class="product-item-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex justify-content-between text-capitalize">
+                                <h5 id="product-item-name">Drone X7D3</h5>
+                                <h5 class="product-item-value">£<strong id="store-item-price" class="font-weight-bold">7.50</strong></h5>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <!-- single item -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 product-item food-item" data-item="food-item">
+                <div class="card single-item">
+                    <div class="img-container">
+                        <img src="./imgs/display-img/drone-3.jpg" alt="Rice Meal 2" class="card-img-top product-img">
+                        <span class="product-item-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize">
+                            <h5 id="product-item-name">Drone D2E9F</h5>
+                            <h5 class="product-item-value">£<strong id="store-item-price" class="font-weight-bold">10.50</strong></h5>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+                    
+                <!-- single item -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 product-item food-item" data-item="food-item">
+                <div class="card single-item">
+                    <div class="img-container">
+                        <img src="./imgs/display-img/drone-4.jpg" alt="Rice Meal 3" class="card-img-top product-img">
+                        <span class="product-item-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize">
+                            <h5 id="product-item-name">Drone Q44H5</h5>
+                            <h5 class="product-item-value">£<strong id="store-item-price" class="font-weight-bold">4.50</strong></h5>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 product-item food-item" data-item="food-item">
+                    <div class="card single-item">
+                        <div class="img-container">
+                            <img src="./imgs/display-img/drone-5.jpg" alt="Rice Meal 2" class="card-img-top product-img">
+                            <span class="product-item-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex justify-content-between text-capitalize">
+                                <h5 id="product-item-name">Drone L8N33</h5>
+                                <h5 class="product-item-value">£<strong id="store-item-price" class="font-weight-bold">10.50</strong></h5>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 product-item food-item" data-item="food-item">
+                    <div class="card single-item">
+                        <div class="img-container">
+                            <img src="./imgs/display-img/drone-6.jpg" alt="Rice Meal 2" class="card-img-top product-img">
+                            <span class="product-item-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex justify-content-between text-capitalize">
+                                <h5 id="product-item-name">Drone BU9B5</h5>
+                                <h5 class="product-item-value">£<strong id="store-item-price" class="font-weight-bold">10.50</strong></h5>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 product-item food-item" data-item="food-item">
+                    <div class="card single-item">
+                        <div class="img-container">
+                            <img src="https://www.zdnet.com/a/img/resize/77d07c60ceb761f827f3e652f9732c2b648a0c8d/2022/06/16/6846eacf-b103-4530-8e10-8db667c9ac56/zd-mini-foldable-drone.jpg?auto=webp&fit=crop&height=900&width=1200" alt="Rice Meal 2" class="card-img-top product-img">
+                            <span class="product-item-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text d-flex justify-content-between text-capitalize">
+                                <h5 id="product-item-name">Drone C2NN8L</h5>
+                                <h5 class="product-item-value">£<strong id="store-item-price" class="font-weight-bold">10.50</strong></h5>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services py-5">
+        <div class="container">
+            <div class="row">
+
+                <!-- single service -->
+                <div class="col-md-4 text-center my-3">
+                    <img class="service-icon" src="https://d1b5h9psu9yexj.cloudfront.net/47953/DJI-Mavic-3_20211222-172543_full.jpg" alt="Natural Plant Icon">
+                    <h5 class="text-uppercase my-3 service-title">Drone V3OI8</h5>
+                    <p class="w-75 mx-auto text-center service-text">
+                        lightweight cinematic FPV drone that can take a hit and keep going. It's a lot safer to fly indoors !
+                    </p>
+                </div>
+
+                <!-- single service -->
+                <div class="col-md-4 text-center my-3">
+                    <img class="service-icon" src="https://3.img-dpreview.com/files/p/E~TS940x788~articles/4631470932/Product-images/DJI_FPV_drone.jpeg" alt="Home Cooked Food Icon">
+                    <h5 class="text-uppercase my-3 service-title">Drone W5A88Q</h5>
+                    <p class="w-75 mx-auto text-center service-text">
+                        This is not a toy drone but rather the real deal. The drone is designed for professional use by photographers and videographers. its 500mHh battery offers 30 minutes of flying time, which outperforms most of the drones out there! 
+                </div>
+
+                <!-- single service -->
+                <div class="col-md-4 text-center my-3">
+                    <img class="service-icon" src="https://thumbs.dreamstime.com/z/drone-carrying-aed-kit-emergency-medical-care-concept-46274684.jpg" alt="Meal Icon">
+                    <h5 class="text-uppercase my-3 service-title">Drone OI5Y6</h5>
+                    <p class="w-75 mx-auto text-center service-text">
+                        Navigational systems, such as GPS, are typically housed in the nose of a drone. The GPS on a drone communicates its precise location to the controller. An onboard altimeter can communicate altitude information. The altimeter also helps keep the drone at a specific altitude if the controller designates one.!
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 footer-title py-5">
+                    <h1 class="text-capitalize banner-title text-center"><strong>Drone-House!</strong></h1>
+                    <div class="footer-icons mt-3 d-flex justify-content-center align-items-center flex-wrap flex-column">
+                        <a href="#" class="footer-icon p-2">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer-icon p-2">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="footer-icon p-2">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer-icon p-2">
+                            <i class="fab fa-snapchat"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Contact form -->
+                <div class="col-md-6 footer-contact text-center text-capitalize p-5">
+                    <form>
+                        <fieldset class="text-capitalize">
+                          <legend >contact us</legend>
+                          <div class="form-group">
+                            <label for="input-email">Email address</label>
+                                <input type="email" class="form-control" id="input-email"  placeholder="Enter email">
+                                <p id="email-help" class="form-text">We'll never share your email with anyone else.</p>
+                          </div>                          
+                          <div class="form-group">
+                                <label for="input-text">your message</label>
+                                <textarea class="form-control" id="input-text" rows="5" placeholder="Enter your message"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-black">
+                              <span class="btn-font">Submit</span>
+                            </button>
+                        </fieldset>
+                      </form>
+                </div>
+            </div>
+
+            <!-- Sitemap 
+            <div class="row text-capitalize">
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <h3>products</h3>
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <h3>about</h3>
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <h3>contact</h3>
+                </div>
+            </div>
+            -->
+        </div>
+    </footer>
+</body>
+</html>
